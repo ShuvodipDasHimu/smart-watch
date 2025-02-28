@@ -23,7 +23,7 @@ for(let i = 0; i < ringButtons.length; i++){
 function selectWristSize(size){
   const sizes = ["S", "M", "L", "XL"];
   for(let i = 0; i < sizes.length; i++){
-    const button = document.getElementById('size-'+sizes[i]);
+    const button = document.getElementById('size-' + sizes[i]);
     const element = sizes[i];
     if(size === element){
       button.classList.add("border-purple-600");
@@ -32,4 +32,17 @@ function selectWristSize(size){
       button.classList.remove("border-purple-600");
     }
   }
+}
+
+const quantityElements = document.querySelectorAll(".quantity-button");
+for(let btn of quantityElements){
+  btn.addEventListener('click', function(event){
+    const amount = event.target.innerText === "+" ? 1 : -1;
+    
+    const quantityElement = document.getElementById('quantity')
+    const currentQuantity = parseInt(quantityElement.innerText);
+
+    const newQuantity = Math.max(0, currentQuantity + amount);
+    quantityElement.innerText = newQuantity;
+  })
 }
