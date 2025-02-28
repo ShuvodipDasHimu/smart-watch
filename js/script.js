@@ -38,7 +38,7 @@ const quantityElements = document.querySelectorAll(".quantity-button");
 for(let btn of quantityElements){
   btn.addEventListener('click', function(event){
     const amount = event.target.innerText === "+" ? 1 : -1;
-    
+
     const quantityElement = document.getElementById('quantity')
     const currentQuantity = parseInt(quantityElement.innerText);
 
@@ -46,3 +46,21 @@ for(let btn of quantityElements){
     quantityElement.innerText = newQuantity;
   })
 }
+
+// add to cart
+let cartCount = 0;
+document.getElementById('add-to-cart').addEventListener('click', function(){
+
+  const quantity = parseInt(document.getElementById("quantity").innerText);
+  if(quantity > 0) {
+    document.getElementById('checkout-container').classList.remove("hidden");
+    cartCount = cartCount + quantity;
+
+    document.getElementById('cart-count').innerText = cartCount;
+  }
+  else{
+    alert("Please select a quantity!");
+  }
+
+
+})
